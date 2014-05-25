@@ -1,0 +1,48 @@
+﻿@model Techorama2014.Models.Book
+
+<h2>Book editor using Angular directives</h2>
+
+<form name="form" 
+      class="form-horizontal">
+    
+    <div class="alert alert-danger" 
+         ng-show="errors.length">
+        <ul>
+            <li ng-repeat="error in errors">{{error}}</li>
+        </ul>
+    </div>
+
+    <app-text-input ng-model="model.id" 
+                    name="id" 
+                    ng-disabled="true" 
+                    caption="Id">
+    </app-text-input>
+    <app-text-input ng-model="model.bookTitle" 
+                    name="title" 
+                    ng-required="true" 
+                    caption="Title">
+    </app-text-input>
+    <app-text-input ng-model="model.author" 
+                    name="author" 
+                    ng-required="true" 
+                    caption="Author">
+    </app-text-input>
+    <app-text-input ng-model="model.imageName" 
+                    name="image" 
+                    caption="Image">
+    </app-text-input>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8">
+            <button class="btn btn-primary" 
+                    ng-click="save()" 
+                    ng-disabled="form.$invalid">
+                Save
+            </button>
+            <button class="btn btn-warning" 
+                    ng-click="cancel()">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>
