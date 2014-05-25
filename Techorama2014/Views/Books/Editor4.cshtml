@@ -1,0 +1,13 @@
+﻿@model Techorama2014.Models.Book
+
+<h2>Book editor using MVC EditorForModel</h2>
+
+<form name="form" 
+      class="form-horizontal">
+    
+    @Html.WebApiValidationSummary()
+
+    @Html.EditorForModel()
+
+    @Html.FormUpdateButtons();
+</form>

@@ -1,0 +1,29 @@
+﻿@{
+    var propertyName = ViewData.ModelMetadata.PropertyName.ToCamelCase();
+    var displayName = ViewData.ModelMetadata.GetDisplayName();
+    var isRequired = ViewData.ModelMetadata.IsRequired.ToString().ToLowerInvariant();
+    var isReadOnly = ViewData.ModelMetadata.IsReadOnly.ToString().ToLowerInvariant();
+}
+
+<div class="form-group"
+     ng-class="{'has-error': form.@propertyName.$invalid}">
+
+    <label class="col-sm-2 control-label">@displayName</label>
+
+    <div class="col-sm-8">
+        <input type="text"
+               name="@propertyName"
+               class="form-control"
+               ng-model="model.@propertyName"
+               ng-required="@isRequired"
+               ng-disabled="@isReadOnly" />
+
+        @if (ViewData.ModelMetadata.IsRequired)
+        {
+            <div class="help-block"
+                 ng-show="form.@propertyName.$error.required">
+                The @displayName field is required.
+            </div>
+        }
+    </div>
+</div>
