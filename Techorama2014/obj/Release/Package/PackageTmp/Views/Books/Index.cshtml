@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div ng-app="booksApp">
+
+    <div ng-view=""></div>
+    
+
+    <script type="text/ng-template" id="/Templates/Books/List">
+        @Html.Partial("List")
+    </script>
+
+    <script type="text/ng-template" id="/Templates/Books/Editor">
+        @Html.Partial("Editor")
+    </script>
+</div>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angularjs")
+    @Scripts.Render("~/bundles/booksApp")
+}
