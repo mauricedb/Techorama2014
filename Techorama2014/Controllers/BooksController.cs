@@ -2,6 +2,9 @@
 
 namespace Techorama2014.Controllers
 {
+#if !DEBUG
+    [OutputCache(Duration = 3600)]
+#endif
     public class BooksController : Controller
     {
         // GET: Books

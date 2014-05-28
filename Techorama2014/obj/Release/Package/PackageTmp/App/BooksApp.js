@@ -7,8 +7,8 @@
             templateUrl: "/Templates/Books/List",
             resolve: {
                 books: [
-                    "Books", function (Books) {
-                        return Books.query();
+                    "Book", function (Book) {
+                        return Book.query();
                     }
                 ]
             }
@@ -19,14 +19,14 @@
             templateUrl: "/Templates/Books/Editor",
             resolve: {
                 book: [
-                    "$route", "Books", function ($route, Books) {
-                        return Books.get({ id: $route.current.params.id });
+                    "$route", "Book", function ($route, Book) {
+                        return Book.get({ id: $route.current.params.id });
                     }
                 ]
             }
         });
 
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
     }
 
     config.$inject = ["$routeProvider", "$locationProvider"];
@@ -37,7 +37,7 @@
         $scope.gridOptions = {
             data: 'books',
             columnDefs: [
-                { field: 'title', displayName: 'Title' },
+                { field: 'bookTitle', displayName: 'Title' },
                 { field: 'author', displayName: 'Author' }
             ],
             afterSelectionChange: function (rowItem) {
@@ -72,7 +72,7 @@
     }
 
     function BooksEditController($scope, $location, book) {
-        $scope.book = book;
+        $scope.model = book;
         $scope.errors = [];
 
         $scope.save = function () {

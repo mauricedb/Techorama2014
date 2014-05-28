@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using Techorama2014.Models;
 
@@ -11,7 +10,7 @@ namespace Techorama2014.Api
 {
     public class BooksController : ApiController
     {
-        private IBooksRepository _repo = new BooksRepository();
+        private readonly IBooksRepository _repo = new BooksRepository();
 
         // GET api/books
         public IQueryable<Book> Get()
@@ -22,7 +21,7 @@ namespace Techorama2014.Api
         // GET api/books/5
         public HttpResponseMessage Get(int id)
         {
-            var book = _repo.GetBook(id);
+            Book book = _repo.GetBook(id);
             if (book == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
@@ -41,9 +40,9 @@ namespace Techorama2014.Api
 
             try
             {
-                var addedBook = _repo.AddBook(book);
-                var result = Request.CreateResponse(HttpStatusCode.Created, addedBook);
-                result.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = addedBook.Id }));
+                Book addedBook = _repo.AddBook(book);
+                HttpResponseMessage result = Request.CreateResponse(HttpStatusCode.Created, addedBook);
+                result.Headers.Location = new Uri(Url.Link("DefaultApi", new {id = addedBook.Id}));
                 return result;
             }
             catch (ValidationException ex)
@@ -66,7 +65,7 @@ namespace Techorama2014.Api
                 {
                     throw new ValidationException("Invalid book ID.");
                 }
-                var updatedBook = _repo.UpdateBook(book);
+                Book updatedBook = _repo.UpdateBook(book);
                 return Request.CreateResponse(HttpStatusCode.OK, updatedBook);
             }
             catch (ValidationException ex)

@@ -9,13 +9,18 @@
     <div ng-view=""></div>
     
 
-    <script type="text/ng-template" id="/Templates/Books/List">
-        @Html.Partial("List")
+    @*<script type="text/ng-template" id="/Templates/Books/List">
+        @Html.Action("List")
     </script>
 
     <script type="text/ng-template" id="/Templates/Books/Editor">
-        @Html.Partial("Editor")
+        @Html.Action("Editor")
     </script>
+    
+    <script type="text/ng-template" id="/Templates/Directives/EditorTextInput">
+        @Html.Action("EditorTextInput", "Directives")
+    </script>*@
+    
 </div>
 
 
