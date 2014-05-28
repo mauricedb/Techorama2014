@@ -20,7 +20,7 @@ namespace Techorama2014.Controllers
 
         public ActionResult Editor()
         {
-            return PartialView("Editor1");
+            return PartialView("Editor4");
         }
     }
 }

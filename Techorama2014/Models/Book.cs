@@ -16,6 +16,8 @@ namespace Techorama2014.Models
         [Required]
         public string Author { get; set; }
 
+        public string ExtraText { get; set; }
+
         [DisplayName("Image")]
         public string ImageName { get; set; }
 
